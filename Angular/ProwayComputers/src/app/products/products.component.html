@@ -1,0 +1,17 @@
+<section class="m-4 row justify-content-center">
+    <div class="card product-list-card m-4" style="width: 18rem;" *ngFor="let product of products">
+        <a routerLink="/products/{{product.id}}" class="text-decoration-none">
+            <img [src]="product.image" class="card-img-top" alt="...">
+            <ul class="list-group list-group-flush align-items-center m-2">
+                <li class="list-unstyled m-1 my-2">
+                    <h3 class="card-title text-primary">{{ product.description }}</h3>
+                </li>
+                <li class="text-warning list-unstyled m-1">
+                    <h3>{{ product.price | currency: "BRL"}}</h3>
+                </li>
+                <li class="list-unstyled m-1 fw-bold">{{ product.descriptionPrice }}</li>
+                <li class="list-unstyled m-1"><button type="button" class="btn btn-primary">Buy</button></li>
+            </ul>
+        </a>
+    </div>
+</section>

@@ -1,0 +1,5 @@
+.product-list-card:hover {
+    outline: 1px solid blue;
+    transform: scale(1.1, 1.1);
+    cursor: pointer;
+}

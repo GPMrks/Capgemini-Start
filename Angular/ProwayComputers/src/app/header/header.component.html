@@ -16,8 +16,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link bi d-block mx-auto mb-1">
+                            <a routerLink="/cart" class="nav-link bi d-block mx-auto mb-1">
                                 Cart
+                                <span>({{ cartService.getCart().length }})</span>
                             </a>
                         </li>
                         <li>
