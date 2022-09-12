@@ -1,0 +1,66 @@
+<h2 class="contact__title">Get in touch</h2>
+<section class="contact__container">
+    <form class="contact-form" action="" [formGroup]="formContact" (ngSubmit)="submitForm()">
+        <input type="text" placeholder="Full Name" formControlName="name"
+            [class.valid]="formContact.controls['name'].valid"
+            [class.invalid]="formContact.controls['name'].invalid && (formContact.controls['name'].touched || formContact.controls['name'].dirty)">
+        <div
+            *ngIf="formContact.controls['name'].invalid && (formContact.controls['name'].touched || formContact.controls['name'].dirty)">
+            <small class="error-message" *ngIf="formContact.controls['name'].hasError('minLength')">
+                Min Length 4 characters
+            </small>
+            <small class="error-message" *ngIf="formContact.controls['name'].hasError('required')">
+                This field is required
+            </small>
+        </div>
+        <input type="text" placeholder="Subject" formControlName="subject" formControlName="subject">
+        <div
+            *ngIf="formContact.controls['subject'].invalid && (formContact.controls['subject'].touched || formContact.controls['subject'].dirty)">
+            <small class="error-message" *ngIf="formContact.controls['subject'].hasError('minLength')">
+                Min Length 4 characters
+            </small>
+            <small class="error-message" *ngIf="formContact.controls['subject'].hasError('required')">
+                This field is required
+            </small>
+        </div>
+        <input type="tel" placeholder="(00) 00000-0000" formControlName="telephone" mask="(00) 00000-0000">
+        <div
+            *ngIf="formContact.controls['telephone'].invalid && (formContact.controls['telephone'].touched || formContact.controls['telephone'].dirty)">
+            <small class="error-message" *ngIf="formContact.controls['telephone'].hasError('minLength')">
+                Min Length 4 characters
+            </small>
+            <small class="error-message" *ngIf="formContact.controls['telephone'].hasError('required')">
+                This field is required
+            </small>
+        </div>
+        <input type="email" placeholder="E-mail" formControlName="email">
+        <div
+            *ngIf="formContact.controls['email'].invalid && (formContact.controls['email'].touched || formContact.controls['email'].dirty)">
+            <small class="error-message" *ngIf="formContact.controls['email'].hasError('minLength')">
+                Min Length 4 characters
+            </small>
+            <small class="error-message" *ngIf="formContact.controls['email'].hasError('required')">
+                This field is required
+            </small>
+        </div>
+        <textarea cols="30" rows="10" maxlength="300" placeholder="Message" formControlName="message"></textarea>
+        <div
+            *ngIf="formContact.controls['message'].invalid && (formContact.controls['message'].touched || formContact.controls['message'].dirty)">
+            <small class="error-message" *ngIf="formContact.controls['message'].hasError('minLength')">
+                Min Length 4 characters
+            </small>
+            <small class="error-message" *ngIf="formContact.controls['message'].hasError('required')">
+                This field is required
+            </small>
+        </div>
+        <button type="submit" class="btn btn-warning btn-sm" style="width: 150px;" [disabled]="formContact.invalid">Submit</button>
+    </form>
+    <address>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14230.300361031368!2d-49.0703074!3d-26.9169772!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa5ec9dd8406a6a7!2sProWay!5e0!3m2!1spt-BR!2sbr!4v1663012312396!5m2!1spt-BR!2sbr"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+            <p>R. 7 de Setembro, 1600 - 14º andar - Centro, Blumenau - SC, 89010-204</p>
+        </iframe>
+    </address>
+</section>
