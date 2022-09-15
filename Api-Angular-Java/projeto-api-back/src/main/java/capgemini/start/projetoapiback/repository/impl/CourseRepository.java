@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -53,7 +54,7 @@ public class CourseRepository implements ICourseRepository {
     }
 
     @Override
-    public Course getById(String id) {
+    public Optional<Course> getById(String id) {
 
         String sql = "SELECT * FROM courses WHERE idCourse = ?";
         Connection connection = null;
@@ -68,7 +69,7 @@ public class CourseRepository implements ICourseRepository {
             statement.setString(1, id);
             resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 course.setId(resultSet.getString("idCourse"));
                 course.setName(resultSet.getString("courseName"));
                 course.setValue(resultSet.getDouble("courseValue"));
@@ -80,7 +81,12 @@ public class CourseRepository implements ICourseRepository {
             ConnectionFactory.closeConnection(connection, statement, resultSet);
         }
 
-        return course;
+        if (course.getName() != null) {
+            return Optional.of(course);
+        } else {
+            return Optional.empty();
+        }
+
     }
 
     @Override
@@ -93,7 +99,7 @@ public class CourseRepository implements ICourseRepository {
         try {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
-            statement.setString(1, generateUUID());
+            statement.setString(1, course.setId(generateUUID().substring(0, 5)));
             statement.setString(2, course.getName());
             statement.setDouble(3, course.getValue());
             statement.execute();
@@ -113,6 +119,7 @@ public class CourseRepository implements ICourseRepository {
 
         Connection connection = null;
         PreparedStatement statement = null;
+        Course courseUpdated;
 
         try {
             connection = ConnectionFactory.getConnection();
@@ -121,13 +128,16 @@ public class CourseRepository implements ICourseRepository {
             statement.setDouble(2, course.getValue());
             statement.setString(3, id);
             statement.execute();
+            courseUpdated = new Course();
+            courseUpdated.setId(id);
+            courseUpdated.setName(course.getName());
+            courseUpdated.setValue(course.getValue());
         } catch (Exception e) {
             throw new RuntimeException("Error when updating course" + e.getMessage() + e);
         } finally {
             ConnectionFactory.closeConnection(connection, statement);
         }
-
-        return course;
+        return courseUpdated;
     }
 
     @Override

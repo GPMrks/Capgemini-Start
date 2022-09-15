@@ -1,0 +1,37 @@
+<form action="">
+    <table>
+        <tr>
+            <td><label for="">Course</label></td>
+            <td><input type="text" name="name" [(ngModel)]="course.name" size="25px"></td>
+        </tr>
+        <tr>
+            <td><label for="">Value</label></td>
+            <td><input type="text" name="value" [(ngModel)]="course.value" size="25px"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button (click)="saveCourse()">Create course</button>
+                <button (click)="updateCourse()">Update course</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<table border="1" style="text-align: center;">
+    <tr>
+        <td>ID</td>
+        <td>COURSE</td>
+        <td>VALUE</td>
+        <td>ACTION</td>
+    </tr>
+    <tr *ngFor="let course of courses | async">
+        <td>{{ course.id }}</td>
+        <td>{{ course.name }}</td>
+        <td>{{ course.value }}</td>
+        <td>
+            <button (click)="selectCourse(course)">Select course</button>
+            <button (click)="deleteCourse(course.id)">Delete course</button>
+        </td>
+    </tr>
+</table>

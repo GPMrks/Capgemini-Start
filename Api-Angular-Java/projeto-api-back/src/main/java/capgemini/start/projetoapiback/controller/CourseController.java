@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/courses")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CourseController {
 
     @Autowired
@@ -37,8 +38,8 @@ public class CourseController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Course> update(@PathVariable String id, @RequestBody Course course) {
-        Course courseToUpdate = courseService.update(id, course);
-        return ResponseEntity.ok().body(course);
+        Course courseUpdated = courseService.update(id, course);
+        return ResponseEntity.ok().body(courseUpdated);
     }
 
     @DeleteMapping("/{id}")

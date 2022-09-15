@@ -51,7 +51,7 @@ public class CourseService implements ICourseService {
     }
 
     private Course checkIfCourseExists(String id) {
-        Optional<Course> optionalCourse = Optional.ofNullable(courseRepository.getById(id));
+        Optional<Course> optionalCourse = courseRepository.getById(id);
         final Course courseIndicated;
         if (optionalCourse.isPresent()) {
             courseIndicated = optionalCourse.get();

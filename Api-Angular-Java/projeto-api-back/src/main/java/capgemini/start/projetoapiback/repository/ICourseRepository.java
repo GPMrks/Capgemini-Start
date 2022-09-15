@@ -3,6 +3,7 @@ package capgemini.start.projetoapiback.repository;
 import capgemini.start.projetoapiback.model.Course;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ICourseRepository {
 
@@ -10,7 +11,7 @@ public interface ICourseRepository {
 
     public List<Course> getAll();
 
-    public Course getById(String id);
+    public Optional<Course> getById(String id);
 
     public Course save(Course course);
 
