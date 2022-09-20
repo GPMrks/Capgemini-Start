@@ -7,10 +7,10 @@ import java.sql.*;
 @Component
 public class ConnectionFactory {
 
-    public static final String DRIVER = "org.postgresql.Driver";
-    public static final String URL = "jdbc:postgresql://localhost:5432/angular_api";
-    public static final String USER = "postgres";
-    public static final String PASS = "postgres";
+    public static final String DRIVER = System.getProperty("spring.datasource.driver");
+    public static final String URL = System.getProperty("spring.datasource.url");
+    public static final String USER = System.getProperty("spring.datasource.username");
+    public static final String PASS = System.getProperty("spring.datasource.password");
 
     public static Connection getConnection(){
         try {

@@ -1,8 +1,17 @@
 package capgemini.start.projetoapiback.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Builder
+@AllArgsConstructor
+@Table(name = "course")
 public class Course {
 
     @Id
@@ -15,8 +24,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(String id, String name, Double value) {
-        this.id = id;
+    public Course(String name, Double value) {
         this.name = name;
         this.value = value;
     }
